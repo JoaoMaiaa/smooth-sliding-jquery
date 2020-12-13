@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        nav{
+            position:fixed;
+            left:0;
+            right:0;
+            top:0;
+            background-color: #2c2c2c;
+        }
+
+        nav ul{
+            display:flex;
+            padding:10px 20px;
+            justify-content: center;
+        }
+
+        nav ul li{
+            color:white;
+            margin:10px;
+            font-size: 1.6rem;
+        }
+
+        #home{
+            height:70vh;
+            text-align:center;  
+            margin-top:100px;
+        }
+
+        .top{
+            height:100vh;
+            display:flex;
+            /* margin-left:31vw; */
+            margin-left:10vw;
+            /* justify-content: center; */
+        }
+
+        .mani{
+            max-width:500px;
+            text-align:center;
+        }
+
+        @media (max-width:930px){
+            .top{
+                justify-content:center;
+                margin:0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <a href="#home"><li>Início</li></a>
+                <a href="#contact"><li>Contato</li></a>
+                <a href="#about"><li>Sobre</li></a>
+                <a href="#product"><li>Produto</li></a>
+            </ul>
+        </nav>
+    </header>
+
+    <h1 id="home" class="title">Início</h1>
+
+    <div class="top">
+        <div class="mani" id="contact">
+            <h1>Contato</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia veniam, sequi, tempore, a placeat nobis dolorum omnis iusto numquam ratione modi? Repudiandae fugit alias id asperiores! Cupiditate quisquam a ad?</p>
+        </div>
+    </div>
+
+    <div class="top">
+        <div class="mani" id="about">
+            <h1 >Sobre</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia veniam, sequi, tempore, a placeat nobis dolorum omnis iusto numquam ratione modi? Repudiandae fugit alias id asperiores! Cupiditate quisquam a ad?</p>
+        </div>
+    </div>
+
+    <div class="top">
+        <div class="mani" id="product">
+            <h1 >Produtos</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia veniam, sequi, tempore, a placeat nobis dolorum omnis iusto numquam ratione modi? Repudiandae fugit alias id asperiores! Cupiditate quisquam a ad?</p>
+        </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script>
+        $(()=>{
+
+        $('nav a').on('click',function(e){
+
+                e.preventDefault();
+
+                let id = $(this).attr('href');
+
+                let innerHeight = $('nav').innerHeight();
+
+                // console.log(innerHeight);
+
+                let target = $(id).offset().top - innerHeight;
+
+                $('html, body').animate({
+                    scrollTop : target
+                }, 800);
+
+                // console.log(target);
+
+            });
+
+        if($(window).innerWidth() > 930){
+            $(window).on('scroll',function(e){
+            let scroll = $(this).scrollTop();
+
+            let top = $('.mani');
+
+                top.each(function(){
+                    let item = $(this).offset().top;
+                    if(scroll > item - 300){
+                        $(this).animate({
+                            marginLeft:'20vw'
+                        },800);
+                    }
+                });
+            });
+        }
+     
+    });
+    </script>
+</body>
+</html>
